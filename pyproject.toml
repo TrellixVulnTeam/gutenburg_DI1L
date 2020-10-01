@@ -1,0 +1,16 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "gutenburg"
+dist-name = "gutenburg"
+description-file = "README.md"
+author = "Martynas Vidugiris"
+author-email = "martynas.vidugiris@gmail.com"
+home-page = "https://github.com/elitepleb/gutenburg"
+classifiers = ["License :: OSI Approved :: MIT License"]
+requires = [ "alive-progress==1.6.1", "rdflib==5.0.0", "rdflib-jsonld==0.5.0", "requests==2.24.0"]
+
+[tool.flit.scripts]
+realpython = "gutenburg.__main__:main"
