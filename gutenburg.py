@@ -243,7 +243,7 @@ def get_book(_id: int, path: str):
 
 # creates a folder with {path}/cache/epub/{id}/{id}.rdf filled with the newest info
 def fetch_rdfs(path: str):
-    
+
     with requests.get(
         "https://www.gutenberg.org/cache/epub/feeds/rdf-files.tar.bz2", stream=True
     ) as r:
@@ -332,7 +332,7 @@ CREATE TABLE IF NOT EXISTS "Categories" (
     )
     conn.commit()
 
-    with alive_bar(len(ids), title="Dumping books in a database", bar="classic", spinner="classic") as bar:
+    with alive_bar(len(books), title="Dumping books in a database", bar="classic", spinner="classic") as bar:
         for book in books:
             c.execute(
                 'INSERT INTO Book ("ID","title","description","issued","downloads","json") VALUES (?,?,?,?,?,?);',
@@ -401,7 +401,7 @@ def main():
             remove_bogus([38200, 58872, 61736, 90907], temp)
             books = os.listdir(temp + "/cache/epub")
             ids = sorted([ int(re.search(r"\d+", book).group(0)) for book in books])
-            
+
             books = []
 
             with alive_bar(len(ids), title="Loading books",bar="classic", spinner="classic") as bar:
@@ -410,7 +410,7 @@ def main():
                         bar.text( "procesing " + str(_id) )
                         _book = get_book(_id, temp)
                         if _book != None:
-                            books.append(_book)                
+                            books.append(_book)
                         else:
                             print( "id {} returned None".format(_id) )
                     except:
