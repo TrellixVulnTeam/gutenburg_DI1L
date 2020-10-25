@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """Gutenburg - A better way to consume the gutenberg book catalog"""
-__version__ = '1.0.4'
+__version__ = '1.0.5'
 # std
 import requests
 import os
